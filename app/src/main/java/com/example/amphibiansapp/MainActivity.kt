@@ -10,7 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibiansapp.ui.screens.AmphibianCard
+import com.example.amphibiansapp.ui.screens.AmphibiansApp
+import com.example.amphibiansapp.ui.screens.AmphibiansViewModel
 import com.example.amphibiansapp.ui.screens.HomeScreen
 import com.example.amphibiansapp.ui.theme.AmphibiansAppTheme
 
@@ -19,13 +22,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AmphibiansAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    HomeScreen()
-                }
+                val viewModel: AmphibiansViewModel =
+                    viewModel(factory = AmphibiansViewModel.Factory)
+                    AmphibiansApp(viewModel = viewModel)
             }
         }
     }
